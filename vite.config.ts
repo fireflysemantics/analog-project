@@ -12,7 +12,14 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     mainFields: ['module'],
   },
-  plugins: [analog()],
+  plugins: [analog({
+    prerender: {
+      routes: async () => [
+        '/',
+        '/blog/2023-02-01-my-first-post',
+      ],
+    },
+  })],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -22,4 +29,6 @@ export default defineConfig(({ mode }) => ({
   define: {
     'import.meta.vitest': mode !== 'production',
   },
+
+
 }));
